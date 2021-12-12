@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { PlusSmIcon } from '@heroicons/react/solid';
+import { FaPlus } from 'react-icons/fa';
 import { Logo } from './Logo';
 
 type NavbarProps = {
@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, username }) => {
             <div className="flex items-center space-x-3">
               <Link href="/admin" passHref>
                 <a className="inline-flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-300 transition-all hover:bg-gray-700 hover:text-white">
-                  <PlusSmIcon className="w-6" />
+                  <FaPlus className="w-6" />
                   Add a quote
                 </a>
               </Link>

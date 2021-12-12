@@ -4,12 +4,12 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBH0joGMkw1rtW1un2o5WwonuFL1aJlVnA',
-  authDomain: 'fantastic-quotes-64b9b.firebaseapp.com',
-  projectId: 'fantastic-quotes-64b9b',
-  storageBucket: 'fantastic-quotes-64b9b.appspot.com',
-  messagingSenderId: '284007093132',
-  appId: '1:284007093132:web:581c2b13ef1f77f5487ca9',
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID,
 };
 
 if (!firebase.apps.length) {

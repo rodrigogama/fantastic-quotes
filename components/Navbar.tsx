@@ -1,16 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
-import { FaPlus } from 'react-icons/fa';
+import { FiPlus } from 'react-icons/fi';
 import { Logo } from './Logo';
+import { useUserAuthentication } from '../context/user';
 
-type NavbarProps = {
-  user?: {
-    photoURL: string;
-  };
-  username?: string;
-};
+const AVATAR_URL =
+  'https://images.unsplash.com/placeholder-avatars/extra-large.jpg?auto=format&fit=crop&w=64&h=64&q=60&crop=faces&bg=fff';
 
-export const Navbar: React.FC<NavbarProps> = ({ user, username }) => {
+export const Navbar: React.FC = () => {
+  const { user, username } = useUserAuthentication();
+
+  console.log({ user, username });
+
   return (
     <nav className="bg-gray-800">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -28,7 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, username }) => {
             <div className="flex items-center space-x-3">
               <Link href="/admin" passHref>
                 <a className="inline-flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-300 transition-all hover:bg-gray-700 hover:text-white">
-                  <FaPlus className="w-6" />
+                  <FiPlus className="w-6" />
                   Add a quote
                 </a>
               </Link>
@@ -36,7 +37,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, username }) => {
                 <a className="rounded-full transition hover:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-offset-gray-800 hover:ring-white">
                   <img
                     className="h-10 w-10 rounded-full"
-                    src={user?.photoURL}
+                    src={user?.photoURL ?? AVATAR_URL}
                     alt="User avatar"
                   />
                 </a>
@@ -44,10 +45,18 @@ export const Navbar: React.FC<NavbarProps> = ({ user, username }) => {
             </div>
           )}
 
-          {!username && (
-            <Link href="enter" passHref>
+          {!user && (
+            <Link href="/enter" passHref>
               <a className="rounded-md bg-white py-2 px-3 text-xs font-semibold uppercase text-grey-800 hover:bg-opacity-90 transition-opacity">
                 Log in
+              </a>
+            </Link>
+          )}
+
+          {user && !username && (
+            <Link href="/enter" passHref>
+              <a className="rounded-md bg-white py-2 px-3 text-xs font-semibold uppercase text-grey-800 hover:bg-opacity-90 transition-opacity">
+                Create username
               </a>
             </Link>
           )}
